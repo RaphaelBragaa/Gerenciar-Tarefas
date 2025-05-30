@@ -2,6 +2,8 @@
 import { apiService } from './apiService';
 import { User } from './taskService';
 
+export { User };
+
 export const userService = {
   async getAllUsers(): Promise<User[]> {
     return apiService.get<User[]>('/api/User');
