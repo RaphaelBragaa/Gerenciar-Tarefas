@@ -2,7 +2,7 @@
 import { apiService } from './apiService';
 import { User } from './taskService';
 
-export { User };
+export type { User };
 
 export const userService = {
   async getAllUsers(): Promise<User[]> {
