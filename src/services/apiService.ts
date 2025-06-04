@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+const API_BASE_URL = 'https://localhost:7009';
 
 class ApiService {
   private getToken(): string | null {
@@ -39,14 +39,15 @@ class ApiService {
     return this.request<T>(url, { method: 'GET' });
   }
 
-  async post<T>(url: string, data: any): Promise<T> {
+  // Agora os dados são tipados com U
+  async post<T, U>(url: string, data: U): Promise<T> {
     return this.request<T>(url, {
       method: 'POST',
       body: JSON.stringify(data),
     });
   }
 
-  async put<T>(url: string, data: any): Promise<T> {
+  async put<T, U>(url: string, data: U): Promise<T> {
     return this.request<T>(url, {
       method: 'PUT',
       body: JSON.stringify(data),
@@ -57,5 +58,4 @@ class ApiService {
     return this.request<T>(url, { method: 'DELETE' });
   }
 }
-
 export const apiService = new ApiService();

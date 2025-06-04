@@ -32,19 +32,19 @@ const UserList = () => {
   }, []);
 
   const handleDelete = async (id: number) => {
-    if (!confirm('Are you sure you want to delete this user?')) return;
+    if (!confirm('Tem certeza de que deseja excluir este usuário?')) return;
 
     try {
       await userService.deleteUser(id);
       setUsers(users.filter(user => user.id !== id));
       toast({
         title: "Success",
-        description: "User deleted successfully",
+        description: "Usuário excluído com sucesso",
       });
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to delete user",
+        description: "Falha ao excluir o usuário",
         variant: "destructive"
       });
     }

@@ -46,7 +46,7 @@ const UserForm = () => {
     if (!formData.name.trim()) {
       toast({
         title: "Error",
-        description: "Name is required",
+        description: "Nome é obrigatório",
         variant: "destructive"
       });
       return false;
@@ -55,7 +55,7 @@ const UserForm = () => {
     if (!formData.email.trim()) {
       toast({
         title: "Error",
-        description: "Email is required",
+        description: "Email é obrigatório",
         variant: "destructive"
       });
       return false;
@@ -65,7 +65,7 @@ const UserForm = () => {
     if (!emailRegex.test(formData.email)) {
       toast({
         title: "Error",
-        description: "Please enter a valid email address",
+        description: "Por favor, insira um endereço de email válido",
         variant: "destructive"
       });
       return false;
@@ -85,13 +85,13 @@ const UserForm = () => {
         await userService.updateUser(parseInt(id), formData);
         toast({
           title: "Success",
-          description: "User updated successfully",
+          description: "Usuário atualizado com sucesso",
         });
       } else {
         await userService.createUser(formData);
         toast({
           title: "Success",
-          description: "User created successfully",
+          description: "Usuário criado com sucesso",
         });
       }
       navigate('/users');

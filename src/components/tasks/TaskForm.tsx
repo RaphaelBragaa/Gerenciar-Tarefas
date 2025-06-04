@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -60,7 +59,7 @@ const TaskForm = () => {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to load task",
+        description: "Falha em carregar a Tarefa",
         variant: "destructive"
       });
     }
@@ -70,7 +69,7 @@ const TaskForm = () => {
     if (!formData.name.trim()) {
       toast({
         title: "Error",
-        description: "Task name is required",
+        description: "O nome da tarefa é obrigatório",
         variant: "destructive"
       });
       return false;
@@ -79,7 +78,7 @@ const TaskForm = () => {
     if (!formData.email.trim()) {
       toast({
         title: "Error",
-        description: "Email is required",
+        description: "O email é obrigatório",
         variant: "destructive"
       });
       return false;
@@ -89,7 +88,7 @@ const TaskForm = () => {
     if (!emailRegex.test(formData.email)) {
       toast({
         title: "Error",
-        description: "Please enter a valid email address",
+        description: "Por favor, insira um endereço de email válido",
         variant: "destructive"
       });
       return false;
@@ -100,7 +99,7 @@ const TaskForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
 
     setLoading(true);
@@ -109,13 +108,13 @@ const TaskForm = () => {
         await taskService.updateTask(parseInt(id), formData);
         toast({
           title: "Success",
-          description: "Task updated successfully",
+          description: "Tarefa atualizada com sucesso",
         });
       } else {
         await taskService.createTask(formData);
         toast({
           title: "Success",
-          description: "Task created successfully",
+          description: "Tarefa criada com sucesso",
         });
       }
       navigate('/tasks');
@@ -150,12 +149,12 @@ const TaskForm = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="description">Description</Label>
+              <Label htmlFor="description">Descrição</Label>
               <Textarea
                 id="description"
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                placeholder="Enter task description"
+                placeholder="Digite a descrição da tarefa"
                 rows={3}
               />
             </div>
@@ -182,24 +181,26 @@ const TaskForm = () => {
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="0">Pending</SelectItem>
-                  <SelectItem value="1">In Progress</SelectItem>
-                  <SelectItem value="2">Completed</SelectItem>
+                  <SelectItem value="0">Pendente</SelectItem>
+                  <SelectItem value="1">Em Progresso</SelectItem>
+                  <SelectItem value="2">Concluída</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="userId">Assign to User (Optional)</Label>
+              <Label htmlFor="userId">Atribuir a Usuário (Opcional)</Label>
               <Select
-                value={formData.userId?.toString() || ""}
-                onValueChange={(value) => setFormData({ ...formData, userId: value ? parseInt(value) : undefined })}
+                value={formData.userId?.toString() ?? "none"}
+                onValueChange={(value) =>
+                  setFormData({ ...formData, userId: value === "none" ? undefined : parseInt(value) })
+                }
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select user" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">No assignment</SelectItem>
+                  <SelectItem value="none">Sem Atribuição</SelectItem>
                   {users.map((user) => (
                     <SelectItem key={user.id} value={user.id.toString()}>
                       {user.name} ({user.email})
@@ -211,7 +212,7 @@ const TaskForm = () => {
 
             <div className="flex space-x-2 pt-4">
               <Button type="submit" disabled={loading}>
-                {loading ? 'Saving...' : (isEdit ? 'Update Task' : 'Create Task')}
+                {loading ? 'Salvando...' : (isEdit ? 'Atualizar Tarefa' : 'Criar Tarefa')}
               </Button>
               <Button
                 type="button"

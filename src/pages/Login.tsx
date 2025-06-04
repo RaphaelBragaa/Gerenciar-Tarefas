@@ -20,7 +20,7 @@ const Login = () => {
     if (!email.trim()) {
       toast({
         title: "Error",
-        description: "Email is required",
+        description: "Email é obrigatório",
         variant: "destructive"
       });
       return false;
@@ -30,7 +30,7 @@ const Login = () => {
     if (!emailRegex.test(email)) {
       toast({
         title: "Error",
-        description: "Please enter a valid email address",
+        description: "Por favor, insira um endereço de email válido",
         variant: "destructive"
       });
       return false;
@@ -39,7 +39,7 @@ const Login = () => {
     if (!password.trim()) {
       toast({
         title: "Error",
-        description: "Password is required",
+        description: "Senha é obrigatória",
         variant: "destructive"
       });
       return false;
@@ -58,13 +58,13 @@ const Login = () => {
       await login(email, password);
       toast({
         title: "Success",
-        description: "Login successful!",
+        description: "Login bem-sucedido!",
       });
       navigate('/');
     } catch (error) {
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Login failed",
+        description: error instanceof Error ? error.message : "Falha no login",
         variant: "destructive"
       });
     } finally {
@@ -76,10 +76,7 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Sign in</CardTitle>
-          <CardDescription className="text-center">
-            Enter your email and password to access your account
-          </CardDescription>
+          <CardTitle className="text-2xl font-bold text-center">Gerenciador de Tarefas</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -88,18 +85,18 @@ const Login = () => {
               <Input
                 id="email"
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Digite seu e-mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Senha</Label>
               <Input
                 id="password"
                 type="password"
-                placeholder="Enter your password"
+                placeholder="Digite sua senha"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -110,14 +107,14 @@ const Login = () => {
               className="w-full"
               disabled={loading}
             >
-              {loading ? 'Signing in...' : 'Sign in'}
+              {loading ? 'Entrando...' : 'Entrar'}
             </Button>
           </form>
           <div className="mt-4 text-center">
             <span className="text-sm text-gray-600">
-              Don't have an account?{' '}
+              Não tem uma conta?{' '}
               <Link to="/register" className="text-blue-600 hover:text-blue-500">
-                Sign up
+                Inscreva-se
               </Link>
             </span>
           </div>

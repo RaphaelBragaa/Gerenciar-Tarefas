@@ -20,7 +20,7 @@ const TaskList = () => {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to load tasks",
+        description: "Falha em carregar as tarefas",
         variant: "destructive"
       });
     } finally {
@@ -33,19 +33,19 @@ const TaskList = () => {
   }, []);
 
   const handleDelete = async (id: number) => {
-    if (!confirm('Are you sure you want to delete this task?')) return;
+    if (!confirm('Tem certeza de que deseja excluir esta tarefa?')) return;
 
     try {
       await taskService.deleteTask(id);
       setTasks(tasks.filter(task => task.id !== id));
       toast({
         title: "Success",
-        description: "Task deleted successfully",
+        description: "Tarefa excluída com sucesso",
       });
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to delete task",
+        description: "Falha ao excluir a tarefa",
         variant: "destructive"
       });
     }
@@ -59,9 +59,9 @@ const TaskList = () => {
     } as const;
 
     const labels = {
-      [TaskStatus.Pending]: 'Pending',
-      [TaskStatus.InProgress]: 'In Progress',
-      [TaskStatus.Completed]: 'Completed'
+      [TaskStatus.Pending]: 'Pendente',
+      [TaskStatus.InProgress]: 'Em Progresso',
+      [TaskStatus.Completed]: 'Concluída'
     };
 
     return (
@@ -90,7 +90,7 @@ const TaskList = () => {
         <Link to="/tasks/new">
           <Button className="flex items-center space-x-2">
             <Plus size={20} />
-            <span>New Task</span>
+            <span>Nova Tarefa</span>
           </Button>
         </Link>
       </div>
@@ -98,7 +98,7 @@ const TaskList = () => {
       {tasks.length === 0 ? (
         <Card>
           <CardContent className="py-8 text-center">
-            <p className="text-gray-500">No tasks found. Create your first task!</p>
+            <p className="text-gray-500">Nenhuma tarefa encontrada. Crie sua primeira tarefa!</p>
           </CardContent>
         </Card>
       ) : (
@@ -119,7 +119,7 @@ const TaskList = () => {
                   </p>
                   {task.user && (
                     <p className="text-sm text-gray-600">
-                      <strong>Assigned to:</strong> {task.user.name}
+                      <strong>Atribuído a:</strong> {task.user.name}
                     </p>
                   )}
                   <div className="flex justify-end space-x-2 pt-2">

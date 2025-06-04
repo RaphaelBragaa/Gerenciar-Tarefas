@@ -19,7 +19,7 @@ const Register = () => {
     if (!name.trim()) {
       toast({
         title: "Error",
-        description: "Name is required",
+        description: "Nome é obrigatório",
         variant: "destructive"
       });
       return false;
@@ -28,7 +28,7 @@ const Register = () => {
     if (!email.trim()) {
       toast({
         title: "Error",
-        description: "Email is required",
+        description: "Email é obrigatório",
         variant: "destructive"
       });
       return false;
@@ -38,7 +38,7 @@ const Register = () => {
     if (!emailRegex.test(email)) {
       toast({
         title: "Error",
-        description: "Please enter a valid email address",
+        description: "Por favor, insira um endereço de e-mail válido",
         variant: "destructive"
       });
       return false;
@@ -57,13 +57,13 @@ const Register = () => {
       await userService.createUser({ name, email });
       toast({
         title: "Success",
-        description: "Account created successfully! Please login.",
+        description: "Conta criada com sucesso! Por favor, faça login.",
       });
       navigate('/login');
     } catch (error) {
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Registration failed",
+        description: error instanceof Error ? error.message : "Falha ao registrar",
         variant: "destructive"
       });
     } finally {
@@ -75,19 +75,19 @@ const Register = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Create Account</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">Registrar</CardTitle>
           <CardDescription className="text-center">
-            Enter your information to create your account
+            Insira suas informações para criar sua conta
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
+              <Label htmlFor="name">Nome Completo</Label>
               <Input
                 id="name"
                 type="text"
-                placeholder="Enter your full name"
+                placeholder="Digite seu nome completo"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -98,7 +98,7 @@ const Register = () => {
               <Input
                 id="email"
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Digite seu e-mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -109,14 +109,14 @@ const Register = () => {
               className="w-full"
               disabled={loading}
             >
-              {loading ? 'Creating Account...' : 'Create Account'}
+              {loading ? 'Criando conta...' : 'Criar conta'}
             </Button>
           </form>
           <div className="mt-4 text-center">
             <span className="text-sm text-gray-600">
-              Already have an account?{' '}
+              Já tem uma conta?{' '}
               <Link to="/login" className="text-blue-600 hover:text-blue-500">
-                Sign in
+                Entrar
               </Link>
             </span>
           </div>

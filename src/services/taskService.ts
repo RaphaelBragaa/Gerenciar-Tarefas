@@ -34,11 +34,11 @@ export const taskService = {
   },
 
   async createTask(task: Omit<Task, 'id'>): Promise<Task> {
-    return apiService.post<Task>('/api/Task', task);
+    return apiService.post<Task, Omit<Task, 'id'>>('/api/Task', task);
   },
 
   async updateTask(id: number, task: Partial<Task>): Promise<Task> {
-    return apiService.put<Task>(`/api/Task/${id}`, task);
+    return apiService.put<Task, Partial<Task>>(`/api/Task/${id}`, task);
   },
 
   async deleteTask(id: number): Promise<void> {

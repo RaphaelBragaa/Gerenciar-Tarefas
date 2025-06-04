@@ -30,6 +30,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     const savedToken = localStorage.getItem('jwtToken');
     if (savedToken) {
+      console.log('Restoring token from localStorage:', savedToken);
       setToken(savedToken);
     }
     setLoading(false);

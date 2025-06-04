@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-8">
             <Link to="/" className="text-xl font-bold text-gray-800">
-              Task Manager
+              Gerenciador de Tarefas
             </Link>
             <div className="flex space-x-4">
               <Link
@@ -31,7 +31,7 @@ const Navbar = () => {
                 }`}
               >
                 <CheckSquare size={20} />
-                <span>Tasks</span>
+                <span>Tarefas</span>
               </Link>
               <Link
                 to="/users"
@@ -42,7 +42,7 @@ const Navbar = () => {
                 }`}
               >
                 <Users size={20} />
-                <span>Users</span>
+                <span>Usuários</span>
               </Link>
             </div>
           </div>
@@ -52,7 +52,7 @@ const Navbar = () => {
             className="flex items-center space-x-2"
           >
             <LogOut size={20} />
-            <span>Logout</span>
+            <span>Sair</span>
           </Button>
         </div>
       </div>
